@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { AirCurrent } from './components/AirCurrent';
 
 function App() {
-  // Configuration initiale optimisée pour des corridors plus larges
   const [params] = useState({
     flowSpeed: 1,
     particleDensity: 50,

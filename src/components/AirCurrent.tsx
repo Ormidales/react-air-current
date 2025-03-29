@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useMemo, useCallback } from 'react';
 
-// Fonction améliorée pour générer des variations fluides (Perlin simplifié)
 const perlinNoise = (x: number, y: number, t: number) => {
   return Math.sin(x * 0.01 + t * 0.002) * Math.cos(y * 0.01 + t * 0.002);
 };
 
-// Définition du type Particle
 interface Particle {
   x: number;
   y: number;
@@ -38,16 +36,15 @@ export const AirCurrent: React.FC<AirCurrentProps> = ({
   const animationRef = useRef<number>();
   const timeRef = useRef(0);
 
-  // Génération des particules en mémoire
   const particles: Particle[] = useMemo(() => {
     const totalParticles = Math.floor(
-      (width * height * particleDensity) / 12000
+      (width * height * particleDensity) / 10000
     );
     return Array.from({ length: totalParticles }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
       size: 1.5 + Math.random() * 2,
-      speed: flowSpeed * (0.8 + Math.random() * 0.4), // Variation de vitesse
+      speed: flowSpeed * (0.8 + Math.random() * 0.4),
       baseAngle: (flowDirection * Math.PI) / 180 + (Math.random() - 0.5) * 0.3,
       oscillation: (Math.random() - 0.5) * 0.1,
       color: `rgba(${180 + Math.random() * 75}, ${120 + Math.random() * 75}, ${
@@ -64,27 +61,22 @@ export const AirCurrent: React.FC<AirCurrentProps> = ({
 
     timeRef.current += 1;
 
-    // Effet de traînée doux, pas de rémanence excessive
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
     ctx.fillRect(0, 0, width, height);
 
     particles.forEach((particle) => {
-      // Générer un angle fluide avec une oscillation douce
       const noiseFactor = perlinNoise(particle.x, particle.y, timeRef.current);
       const finalAngle =
         particle.baseAngle + noiseFactor * turbulence + particle.oscillation;
 
-      // Mise à jour de la position
       particle.x += Math.cos(finalAngle) * particle.speed;
       particle.y += Math.sin(finalAngle) * particle.speed;
 
-      // Effet de bord : réapparaître de l'autre côté en douceur
       if (particle.x < 0) particle.x = width;
       if (particle.x > width) particle.x = 0;
       if (particle.y < 0) particle.y = height;
       if (particle.y > height) particle.y = 0;
 
-      // Dessin de la particule avec un effet plus net
       ctx.beginPath();
       ctx.fillStyle = particle.color;
       ctx.globalAlpha = particle.alpha;
@@ -109,7 +101,7 @@ export const AirCurrent: React.FC<AirCurrentProps> = ({
       height={height}
       style={{
         width: '100%',
-        height: '200px',
+        height: '100%',
         borderRadius: '8px',
         backgroundColor: '#000',
       }}

@@ -7,17 +7,11 @@ function App() {
     flowSpeed: 1,
     particleDensity: 50,
     flowDirection: 0,
-    turbulence: 0.4,
+    turbulence: 0.25,
   });
 
   return (
-    <div className="min-h-screen bg-black p-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="bg-gray-900 rounded-lg shadow-xl p-2">
-          <AirCurrent {...params} />
-        </div>
-      </div>
-    </div>
+    <AirCurrent {...params} />
   );
 }
 

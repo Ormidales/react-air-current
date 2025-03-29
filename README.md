@@ -2,7 +2,7 @@
 
 ## 🚀 Présentation
 
-Air Current est un composant React permettant de simuler des courants d'air en temps réel avec des particules animées. Il utilise l'API Canvas pour afficher des flux dynamiques influencés par la vitesse, la direction et la turbulence.
+Composant React permettant de simuler des courants d'air en temps réel avec des particules animées. Il utilise l'API Canvas pour afficher des flux dynamiques influencés par la vitesse, la direction et la turbulence.
 
 ## 🛠️ Technologies utilisées
 

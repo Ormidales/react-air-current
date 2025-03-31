@@ -6,7 +6,7 @@ function App() {
     flowSpeed: 1,
     particleDensity: 50,
     flowDirection: 0,
-    turbulence: 0.25,
+    turbulence: 0.2,
   });
 
   return (

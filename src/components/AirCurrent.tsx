@@ -38,7 +38,7 @@ export const AirCurrent: React.FC<AirCurrentProps> = ({
 
   const particles: Particle[] = useMemo(() => {
     const totalParticles = Math.floor(
-      (width * height * particleDensity) / 10000
+      (width * height * particleDensity) / 5000
     );
     return Array.from({ length: totalParticles }, () => ({
       x: Math.random() * width,
@@ -47,9 +47,8 @@ export const AirCurrent: React.FC<AirCurrentProps> = ({
       speed: flowSpeed * (0.8 + Math.random() * 0.4),
       baseAngle: (flowDirection * Math.PI) / 180 + (Math.random() - 0.5) * 0.3,
       oscillation: (Math.random() - 0.5) * 0.1,
-      color: `rgba(${180 + Math.random() * 75}, ${120 + Math.random() * 75}, ${
-        200 + Math.random() * 75
-      }, 1)`,
+      color: `rgba(${180 + Math.random() * 75}, ${120 + Math.random() * 75}, ${200 + Math.random() * 75
+        }, 1)`,
       alpha: 0.4 + Math.random() * 0.5,
     }));
   }, [width, height, particleDensity, flowSpeed, flowDirection]);
